@@ -7,26 +7,26 @@ namespace Sample
 {
 	class Program
 	{
-        IMqtt _client;
-        //
-        static void Main(string[] args)
+		IMqtt _client;
+		//
+		static void Main(string[] args)
 		{
 			Program prog = new Program();
 			prog.Start();
 			Console.ReadKey();
 			prog.Stop();
 		}
-        //
-        Program()
-        {
-            string connectionString = "tcp://m16.cloudmqtt.com:14106";
-            _client = MqttClientFactory.CreateClient(connectionString, "useracl", "username", "password");
-            _client.Connected += new ConnectionDelegate(client_Connected);
-            _client.ConnectionLost += new ConnectionDelegate(_client_ConnectionLost);
-            _client.PublishArrived += new PublishArrivedDelegate(client_PublishArrived);
-        }
+		//
+		Program()
+		{
+		    string connectionString = "tcp://m16.cloudmqtt.com:14106";
+		    _client = MqttClientFactory.CreateClient(connectionString, "useracl", "username", "password");
+		    _client.Connected += new ConnectionDelegate(client_Connected);
+		    _client.ConnectionLost += new ConnectionDelegate(_client_ConnectionLost);
+		    _client.PublishArrived += new PublishArrivedDelegate(client_PublishArrived);
+		}
 
-        void Start()
+		void Start()
 		{
 			Console.WriteLine("Client connecting\n");
 			_client.Connect(true);
@@ -74,31 +74,5 @@ namespace Sample
 			Console.WriteLine();
 			return true;
 		}
-
 	}
-
 }
-
-
-//Program()
-//{
-//    // string connectionString = "mqtt://m13.cloudmqtt.com:12644";
-//    string connectionString = "tcp://m16.cloudmqtt.com:14106";
-//    // Instantiate client using MqttClientFactory
-//    _client = MqttClientFactory.CreateClient(connectionString, "aneuk", "clpfcosb", "ILo_4ucaK3P_");
-//    // Setup some useful client delegate callbacks
-//    _client.Connected += new ConnectionDelegate(client_Connected);
-//    _client.ConnectionLost += new ConnectionDelegate(_client_ConnectionLost);
-//    _client.PublishArrived += new PublishArrivedDelegate(client_PublishArrived);
-//}
-
-//      Program(string connectionString, string clientId)
-//{
-//	// Instantiate client using MqttClientFactory
-//	_client = MqttClientFactory.CreateClient(connectionString, clientId);
-
-//	// Setup some useful client delegate callbacks
-//	_client.Connected += new ConnectionDelegate(client_Connected);
-//	_client.ConnectionLost += new ConnectionDelegate(_client_ConnectionLost);
-//	_client.PublishArrived += new PublishArrivedDelegate(client_PublishArrived);
-//}
